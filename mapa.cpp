@@ -1,9 +1,9 @@
 #include "mapa.h"
 
-mapa::mapa(int _x, int _y, jugador _c){
+mapa::mapa(int _x, int _y, jugador _gus){
 	x=_x;
 	y=_y;
-	c=_c;
+	gus=_gus;
 }
 
 mapa::~mapa()
