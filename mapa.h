@@ -14,9 +14,11 @@ public:
 	~mapa();
 	void imprimir();
 
-	void colision_muros(int& xjj, int& ancho, int& yjj, int& alto, int& vidass, bool& juegoo);
+	void colision_muros(int& xjj, int& ancho, int& yjj, int& alto, int& vidass);
 
 	void colision_frutita(int& xjj, int& mnzx, int& yjj, int& mnzy, int& uwuu, int& owoo, int& puntoss);
+
+	void comprueba(int& vidass, bool& juegoo);
 
 };
 
