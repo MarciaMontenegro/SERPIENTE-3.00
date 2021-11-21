@@ -3,17 +3,13 @@
 jugador::jugador() {
     xj = 0;
     yj = 0;
-    colax = 0;
-    colay = 0;
 }
 
-jugador::jugador(int _x, int _y, int _colax, int _colay) {
+jugador::jugador(int _x, int _y) {
     xj = _x;
     yj = _y;
     vidas = 3;
     puntos = 0;
-    colax = _colax;
-    colay = _colay;
 }
 
 jugador::~jugador() {
@@ -42,6 +38,21 @@ void jugador::detectar() {
 }
 
 void jugador::mover() {
+
+    int prevx = colax[0];
+    int prevy = colay[0];
+    int prev2x, prev2y;
+    colax[0] = xj;
+    colay[0] = yj;
+    for (int i = 1; i < puntos; i++) {
+        prev2x = colax[i];
+        prev2y = colay[i];
+        colax[i] = prevx;
+        colay[i] = prevy;
+        prevx = prev2x;
+        prevy = prev2y;
+    }
+
     switch (DireccionSerpiente) {
     case PARADA:
         break;
@@ -70,26 +81,34 @@ void jugador::vidainfo() {
 }
 
 void jugador::mov_cola() {
-    int XantiguaCola = colax;
-    int YantiguaCola = colay;
+    int XantiguaCola = colax[0];
+    int YantiguaCola = colay[0];
     int XantiguaCola2, YantiguaCola2;
-    colax = xj;
-    colay = yj;
+    /*colax = xj;
+    colay = yj;*/
 
     //intercambio de pos
     for (int i = 1; i < puntos; i++)//itera las veces el tamaño de la cola
     {
-        XantiguaCola2 = colax;
-        YantiguaCola2 = colay;
+        XantiguaCola2 = colax[i];
+        YantiguaCola2 = colay[i];
 
-        colax = XantiguaCola;
-        colay = YantiguaCola;
+        colax[i] = XantiguaCola;
+        colay[i] = YantiguaCola;
 
         XantiguaCola = XantiguaCola2;
         YantiguaCola = YantiguaCola2;
     }
-
-
 }
 
+void jugador::colision_cola() {
+    for (int i = 0; i < puntos; i++)
+    {
+        if (colax[i] == xj && colay[i] == yj)
+        {
+            vidas--;
+           
+        }
+    }
+}
 
